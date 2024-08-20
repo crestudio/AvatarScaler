@@ -15,6 +15,7 @@ using VRC.SDKBase;
 
 namespace com.vrsuya.avatarscaler {
 
+	[ExecuteInEditMode]
 	public class AvatarScaler : MonoBehaviour {
 
 		public enum Avatar {
@@ -276,6 +277,11 @@ namespace com.vrsuya.avatarscaler {
 			return;
 		}
 
+		public static void ScaleAvatarHeight(int TargetAvatarHeight) {
+			ScaleAvatar(TargetAvatarHeight);
+			return;
+		}
+
 		private void OnEnable() {
 			CheckAvatarMenu();
 			return;
@@ -406,6 +412,42 @@ namespace com.vrsuya.avatarscaler {
 			} else {
 				return new VRC_AvatarDescriptor[0];
 			}
+		}
+	}
+
+	[ExecuteInEditMode]
+	public class AvatarScalerEditor : EditorWindow {
+
+		public static int TargetAvatarHeight = 150;
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Custom", priority = 1300)]
+		static void CreateWindow() {
+			AvatarScalerEditor AppWindow = (AvatarScalerEditor)GetWindowWithRect(typeof(AvatarScalerEditor), new Rect(0, 0, 230, 100));
+			AppWindow.titleContent = new GUIContent("AvatarScaler");
+		}
+
+		void OnGUI() {
+			EditorGUILayout.Space(EditorGUIUtility.singleLineHeight);
+			GUILayout.BeginHorizontal();
+			GUILayout.FlexibleSpace();
+			GUILayout.Label("Avatar Height (cm)", EditorStyles.boldLabel);
+			GUILayout.FlexibleSpace();
+			GUILayout.EndHorizontal();
+			GUILayout.BeginHorizontal();
+			GUILayout.FlexibleSpace();
+			TargetAvatarHeight = EditorGUILayout.IntSlider(GUIContent.none, TargetAvatarHeight, 50, 250, GUILayout.Width(200));
+			GUILayout.FlexibleSpace();
+			GUILayout.EndHorizontal();
+			GUILayout.BeginHorizontal();
+			GUILayout.FlexibleSpace();
+			EditorGUILayout.Space(EditorGUIUtility.singleLineHeight);
+			if (GUILayout.Button("Apply", GUILayout.Width(100))) {
+				AvatarScaler.ScaleAvatarHeight(TargetAvatarHeight);
+				Close();
+			}
+			GUILayout.FlexibleSpace();
+			GUILayout.EndHorizontal();
+			EditorGUILayout.Space(EditorGUIUtility.singleLineHeight);
 		}
 	}
 }
