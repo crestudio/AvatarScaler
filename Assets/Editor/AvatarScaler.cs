@@ -280,7 +280,7 @@ namespace com.vrsuya.avatarscaler {
 					float TargetAvatarScale = TargetEyeHeight / AvatarViewPosition.y;
 					ScaleAvatarTransform(AvatarObject, TargetAvatarScale);
 					ScaleAvatarViewPosition(AvatarDescriptor, TargetAvatarScale);
-					Debug.Log("[AvatarScaler] " + AvatarObject.name + " 아바타 키를 " + TargetHeight + "cm으로 맞추었습니다!");
+					Debug.Log("[AvatarScaler] Set the height of " + AvatarObject.name  + " avatar to " + TargetHeight  + "cm");
 				}
 				CheckAvatarMenu();
 				SceneView.RepaintAll();
