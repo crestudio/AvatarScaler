@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+ï»¿#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
 
@@ -53,7 +53,8 @@ namespace com.vrsuya.avatarscaler {
 		public static Avatar CurrentAvatarType = Avatar.Kikyo;
 		private static int UndoGroupIndex;
 
-		/// <summary>¾Æ¹ÙÅ¸¸¦ ÁöÁ¤µÈ Å¸ÀÔ¿¡ ¸ÂÃä´Ï´Ù.</summary>
+
+		/// <summary>ì•„ë°”íƒ€ë¥¼ ì§€ì •ëœ íƒ€ì…ì— ë§ì¶¥ë‹ˆë‹¤.</summary>
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Chiffon", priority = 1100)]
 		public static void SetAvatarTypeChiffon() {
 			CurrentAvatarType = Avatar.Chiffon;
@@ -152,7 +153,7 @@ namespace com.vrsuya.avatarscaler {
 			return;
 		}
 
-		/// <summary>¾Æ¹ÙÅ¸ÀÇ Å°¸¦ ÁöÁ¤µÈ Å°¿¡ ¸ÂÃä´Ï´Ù.</summary>
+		/// <summary>ì•„ë°”íƒ€ì˜ í‚¤ë¥¼ ì§€ì •ëœ í‚¤ì— ë§ì¶¥ë‹ˆë‹¤.</summary>
 		[MenuItem("Tools/VRSuya/AvatarScaler/100cm", priority = 1200)]
 		public static void ScaleAvatar100cm() {
 			ScaleAvatar(100);
@@ -219,7 +220,7 @@ namespace com.vrsuya.avatarscaler {
 			return;
 		}
 
-		/// <summary>¾Æ¹ÙÅ¸ ¸Ş´ºÀÇ º¯¼ö »óÅÂ¸¦ Ã¼Å©ÇÕ´Ï´Ù.</summary>
+		/// <summary>ì•„ë°”íƒ€ ë©”ë‰´ì˜ ë³€ìˆ˜ ìƒíƒœë¥¼ ì²´í¬í•©ë‹ˆë‹¤.</summary>
 		private static void CheckAvatarMenu() {
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Chiffon", CurrentAvatarType == Avatar.Chiffon);
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Grus", CurrentAvatarType == Avatar.Grus);
@@ -238,7 +239,7 @@ namespace com.vrsuya.avatarscaler {
 			return;
 		}
 
-		/// <summary>ÁöÁ¤µÈ Å°¸¦ ¸ñÇ¥·Î ¾Æ¹ÙÅ¸ ½ºÄÉÀÏÀ» º¯°æÇÕ´Ï´Ù.</summary>
+		/// <summary>ì§€ì •ëœ í‚¤ë¥¼ ëª©í‘œë¡œ ì•„ë°”íƒ€ ìŠ¤ì¼€ì¼ì„ ë³€ê²½í•©ë‹ˆë‹¤.</summary>
 		private static void ScaleAvatar(int TargetHeight) {
 			if (GetVRCAvatar().Length > 0) {
 				foreach (VRC_AvatarDescriptor TargetAvatarDescriptor in GetVRCAvatar()) {
@@ -252,14 +253,15 @@ namespace com.vrsuya.avatarscaler {
 					UndoGroupIndex = Undo.GetCurrentGroup();
 					ScaleAvatarTransform(AvatarObject, TargetAvatarScale);
 					ScaleAvatarViewPosition(AvatarDescriptor, TargetAvatarScale);
-					Debug.Log("[AvatarScaler] " + AvatarObject.name + " ¾Æ¹ÙÅ¸ Å°¸¦ " + TargetHeight + "cmÀ¸·Î ¸ÂÃß¾ú½À´Ï´Ù!");
+					Debug.Log("[AvatarScaler] " + AvatarObject.name + " ì•„ë°”íƒ€ í‚¤ë¥¼ " + TargetHeight + "cmìœ¼ë¡œ ë§ì¶”ì—ˆìŠµë‹ˆë‹¤!");
 				}
 				SceneView.RepaintAll();
 			}
 			return;
 		}
 
-		/// <summary>¾Æ¹ÙÅ¸ÀÇ ½ºÄÉÀÏÀ» º¯°æÇÕ´Ï´Ù.</summary>
+
+		/// <summary>ì•„ë°”íƒ€ì˜ ìŠ¤ì¼€ì¼ì„ ë³€ê²½í•©ë‹ˆë‹¤.</summary>
 		private static void ScaleAvatarTransform(GameObject TargetAvatar, float TargetScale) {
 			Transform TargetAvatarTransform = TargetAvatar.transform;
 			Undo.RecordObject(TargetAvatarTransform, "Changed Avatar Transform");
@@ -268,7 +270,7 @@ namespace com.vrsuya.avatarscaler {
 			Undo.CollapseUndoOperations(UndoGroupIndex);
 		}
 
-		/// <summary>¾Æ¹ÙÅ¸ÀÇ ºä Æ÷Áö¼ÇÀ» º¯°æÇÕ´Ï´Ù.</summary>
+		/// <summary>ì•„ë°”íƒ€ì˜ ë·° í¬ì§€ì…˜ì„ ë³€ê²½í•©ë‹ˆë‹¤.</summary>
 		private static void ScaleAvatarViewPosition(VRC_AvatarDescriptor TargetAvatarDescritor, float TargetScale) {
 			Undo.RecordObject(TargetAvatarDescritor, "Changed Avatar View Position");
 			TargetAvatarDescritor.ViewPosition = TargetAvatarDescritor.ViewPosition * TargetScale;
@@ -276,8 +278,8 @@ namespace com.vrsuya.avatarscaler {
 			Undo.CollapseUndoOperations(UndoGroupIndex);
 		}
 
-		/// <summary>Scene¿¡¼­ Á¶°Ç¿¡ ¸Â´Â VRC AvatarDescriptor ÄÄÆ÷³ÍÆ® ¾Æ¹ÙÅ¸ 1°³¸¦ ¹İÈ¯ÇÕ´Ï´Ù.</summary>
-		/// <returns>Á¶°Ç¿¡ ¸Â´Â VRC ¾Æ¹ÙÅ¸</returns>
+		/// <summary>Sceneì—ì„œ ì¡°ê±´ì— ë§ëŠ” VRC AvatarDescriptor ì»´í¬ë„ŒíŠ¸ ì•„ë°”íƒ€ 1ê°œë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.</summary>
+		/// <returns>ì¡°ê±´ì— ë§ëŠ” VRC ì•„ë°”íƒ€</returns>
 		private static VRC_AvatarDescriptor[] GetVRCAvatar() {
 			VRC_AvatarDescriptor[] TargetAvatarDescriptors = GetAvatarDescriptorFromVRCSDKBuilder();
 			if (TargetAvatarDescriptors.Length == 0) TargetAvatarDescriptors = GetAvatarDescriptorFromSelection();
@@ -285,14 +287,14 @@ namespace com.vrsuya.avatarscaler {
 			return TargetAvatarDescriptors;
 		}
 
-		/// <summary>VRCSDK Builder¿¡¼­ È°¼ºÈ­ »óÅÂÀÎ VRC ¾Æ¹ÙÅ¸¸¦ ¹İÈ¯ÇÕ´Ï´Ù.</summary>
-		/// <returns>VRCSDK Builder¿¡¼­ È°¼ºÈ­ »óÅÂÀÎ VRC ¾Æ¹ÙÅ¸</returns>
+		/// <summary>VRCSDK Builderì—ì„œ í™œì„±í™” ìƒíƒœì¸ VRC ì•„ë°”íƒ€ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.</summary>
+		/// <returns>VRCSDK Builderì—ì„œ í™œì„±í™” ìƒíƒœì¸ VRC ì•„ë°”íƒ€</returns>
 		private static VRC_AvatarDescriptor[] GetAvatarDescriptorFromVRCSDKBuilder() {
 			return new VRC_AvatarDescriptor[0];
 		}
 
-		/// <summary>Unity ÇÏÀÌ¾î¶óÅ°¿¡¼­ ¼±ÅÃÇÑ GameObject Áß¿¡¼­ VRC AvatarDescriptor ÄÄÆ÷³ÍÆ®°¡ Á¸ÀçÇÏ´Â ¾Æ¹ÙÅ¸¸¦ 1°³¸¦ ¹İÈ¯ÇÕ´Ï´Ù.</summary>
-		/// <returns>¼±ÅÃ ÁßÀÎ VRC ¾Æ¹ÙÅ¸</returns>
+		/// <summary>Unity í•˜ì´ì–´ë¼í‚¤ì—ì„œ ì„ íƒí•œ GameObject ì¤‘ì—ì„œ VRC AvatarDescriptor ì»´í¬ë„ŒíŠ¸ê°€ ì¡´ì¬í•˜ëŠ” ì•„ë°”íƒ€ë¥¼ 1ê°œë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.</summary>
+		/// <returns>ì„ íƒ ì¤‘ì¸ VRC ì•„ë°”íƒ€</returns>
 		private static VRC_AvatarDescriptor[] GetAvatarDescriptorFromSelection() {
 			GameObject[] SelectedGameObjects = Selection.gameObjects;
 			if (SelectedGameObjects.Length == 1) {
@@ -311,8 +313,8 @@ namespace com.vrsuya.avatarscaler {
 			}
 		}
 
-		/// <summary>Scene¿¡¼­ È°¼ºÈ­ »óÅÂÀÎ VRC AvatarDescriptor ÄÄÆ÷³ÍÆ®°¡ Á¸ÀçÇÏ´Â ¾Æ¹ÙÅ¸¸¦ 1°³¸¦ ¹İÈ¯ÇÕ´Ï´Ù.</summary>
-		/// <returns>Scene¿¡¼­ È°¼ºÈ­ »óÅÂÀÎ VRC ¾Æ¹ÙÅ¸</returns>
+		/// <summary>Sceneì—ì„œ í™œì„±í™” ìƒíƒœì¸ VRC AvatarDescriptor ì»´í¬ë„ŒíŠ¸ê°€ ì¡´ì¬í•˜ëŠ” ì•„ë°”íƒ€ë¥¼ 1ê°œë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.</summary>
+		/// <returns>Sceneì—ì„œ í™œì„±í™” ìƒíƒœì¸ VRC ì•„ë°”íƒ€</returns>
 		private static VRC_AvatarDescriptor[] GetAvatarDescriptorFromVRCTool() {
 			VRC_AvatarDescriptor[] AllVRCAvatarDescriptor = VRC.Tools.FindSceneObjectsOfTypeAll<VRC_AvatarDescriptor>().ToArray();
 			if (AllVRCAvatarDescriptor.Length > 0) {
