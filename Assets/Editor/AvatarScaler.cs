@@ -268,6 +268,9 @@ namespace com.vrsuya.avatarscaler {
 		/// <summary>지정된 키를 목표로 아바타 스케일을 변경합니다.</summary>
 		private static void ScaleAvatar(int TargetHeight) {
 			if (GetVRCAvatar().Length > 0) {
+				Undo.IncrementCurrentGroup();
+				Undo.SetCurrentGroupName("VRSuya AvatarScaler");
+				UndoGroupIndex = Undo.GetCurrentGroup();
 				foreach (VRC_AvatarDescriptor TargetAvatarDescriptor in GetVRCAvatar()) {
 					VRC_AvatarDescriptor AvatarDescriptor = TargetAvatarDescriptor;
 					GameObject AvatarObject = AvatarDescriptor.gameObject;
@@ -275,9 +278,6 @@ namespace com.vrsuya.avatarscaler {
 					if (AutomaticAvatarRecognition) CurrentAvatarType = GetCurrentAvatarType(TargetAvatarDescriptor);
 					float TargetEyeHeight = AvatarEyeHeights[CurrentAvatarType] * TargetHeight / 100;
 					float TargetAvatarScale = TargetEyeHeight / AvatarViewPosition.y;
-					Undo.IncrementCurrentGroup();
-					Undo.SetCurrentGroupName("VRSuya AvatarScaler");
-					UndoGroupIndex = Undo.GetCurrentGroup();
 					ScaleAvatarTransform(AvatarObject, TargetAvatarScale);
 					ScaleAvatarViewPosition(AvatarDescriptor, TargetAvatarScale);
 					Debug.Log("[AvatarScaler] " + AvatarObject.name + " 아바타 키를 " + TargetHeight + "cm으로 맞추었습니다!");
