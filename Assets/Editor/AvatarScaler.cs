@@ -73,10 +73,10 @@ namespace com.vrsuya.avatarscaler {
 		private static int UndoGroupIndex;
 
 		/// <summary>아바타 이름을 분석하여 자동으로 타입을 변환할지 결정합니다.</summary>
-		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Automatic Avatar Recognition", priority = 1090)]
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Automatic Avatar Recognition", priority = 1000)]
 		public static void SetAvatarRecognition() {
 			AutomaticAvatarRecognition = !AutomaticAvatarRecognition;
-			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Automatic Avatar Recognition", AutomaticAvatarRecognition == true);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Automatic Avatar Recognition", AutomaticAvatarRecognition);
 			return;
 		}
 
