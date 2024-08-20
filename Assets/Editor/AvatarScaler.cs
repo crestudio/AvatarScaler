@@ -138,14 +138,14 @@ namespace com.vrsuya.avatarscaler {
 			return;
 		}
 
-		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Shinra", priority = 1111)]
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Shinra", priority = 1112)]
 		public static void SetAvatarTypeShinra() {
 			CurrentAvatarType = Avatar.Shinra;
 			CheckAvatarMenu();
 			return;
 		}
 
-		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Sio", priority = 1112)]
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Sio", priority = 1113)]
 		public static void SetAvatarTypeSio() {
 			CurrentAvatarType = Avatar.Sio;
 			CheckAvatarMenu();
