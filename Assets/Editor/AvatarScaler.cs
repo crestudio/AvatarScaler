@@ -28,6 +28,7 @@ namespace com.vrsuya.avatarscaler {
 			Maya,
 			Minase,
 			Moe,
+			Selestia,
 			Shinra,
 			Sio
 		}
@@ -44,6 +45,7 @@ namespace com.vrsuya.avatarscaler {
 			{ Avatar.Maya, 0.8845845f },
 			{ Avatar.Minase, 0.91609f },
 			{ Avatar.Moe, 0.897036f },
+			{ Avatar.Selestia, 0.8838221f },
 			{ Avatar.Shinra, 0.900882f },
 			{ Avatar.Sio, 0.9020135f }
 		};
@@ -115,6 +117,13 @@ namespace com.vrsuya.avatarscaler {
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Moe", priority = 1110)]
 		public static void SetAvatarTypeMoe() {
 			CurrentAvatarType = Avatar.Moe;
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Selestia", priority = 1111)]
+		public static void SetAvatarTypeSelestia() {
+			CurrentAvatarType = Avatar.Selestia;
+			CheckAvatarMenu();
 			return;
 		}
 
