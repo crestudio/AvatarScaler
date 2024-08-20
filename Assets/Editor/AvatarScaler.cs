@@ -85,7 +85,7 @@ namespace com.vrsuya.avatarscaler {
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Automatic Avatar Recognition", priority = 1000)]
 		public static void SetAvatarRecognition() {
 			AutomaticAvatarRecognition = !AutomaticAvatarRecognition;
-			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Automatic Avatar Recognition", AutomaticAvatarRecognition);
+			CheckAvatarMenu();
 			return;
 		}
 
@@ -276,8 +276,14 @@ namespace com.vrsuya.avatarscaler {
 			return;
 		}
 
+		private void OnEnable() {
+			CheckAvatarMenu();
+			return;
+		}
+
 		/// <summary>아바타 메뉴의 변수 상태를 체크합니다.</summary>
 		private static void CheckAvatarMenu() {
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Automatic Avatar Recognition", AutomaticAvatarRecognition);
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Chiffon", CurrentAvatarType == Avatar.Chiffon);
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Grus", CurrentAvatarType == Avatar.Grus);
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Karin", CurrentAvatarType == Avatar.Karin);
