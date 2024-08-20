@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -50,9 +51,34 @@ namespace com.vrsuya.avatarscaler {
 			{ Avatar.Sio, 0.9020135f }
 		};
 
+		private readonly static Dictionary<Avatar, string[]> AvatarNames = new Dictionary<Avatar, string[]>() {
+			{ Avatar.Chiffon, new string[] { "Chiffon", "쉬폰", "シフォン" } },
+			{ Avatar.Grus, new string[] { "Grus", "그루스" } },
+			{ Avatar.Karin, new string[] { "Karin", "카린", "カリン" } },
+			{ Avatar.Kikyo, new string[] { "Kikyo", "키쿄", "桔梗" } },
+			{ Avatar.Leefa, new string[] { "Leefa", "리파", "リーファ" } },
+			{ Avatar.Lime, new string[] { "Lime", "라임", "ライム" } },
+			{ Avatar.Mamehinata, new string[] { "Mamehinata", "마메히나타", "まめひなた" } },
+			{ Avatar.Manuka, new string[] { "MANUKA", "마누카", "マヌカ" } },
+			{ Avatar.Maya, new string[] { "Maya", "마야", "舞夜" } },
+			{ Avatar.Minase, new string[] { "Minase", "미나세", "水瀬" } },
+			{ Avatar.Moe, new string[] { "Moe", "모에", "萌" } },
+			{ Avatar.Selestia, new string[] { "SELESTIA", "셀레스티아", "セレスティア" } },
+			{ Avatar.Shinra, new string[] { "Shinra", "신라", "森羅" } },
+			{ Avatar.Sio, new string[] { "Sio", "시오", "しお" } }
+		};
+
 		public static Avatar CurrentAvatarType = Avatar.Kikyo;
+		public static bool AutomaticAvatarRecognition = true;
 		private static int UndoGroupIndex;
 
+		/// <summary>아바타 이름을 분석하여 자동으로 타입을 변환할지 결정합니다.</summary>
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Automatic Avatar Recognition", priority = 1090)]
+		public static void SetAvatarRecognition() {
+			AutomaticAvatarRecognition = !AutomaticAvatarRecognition;
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Automatic Avatar Recognition", AutomaticAvatarRecognition == true);
+			return;
+		}
 
 		/// <summary>아바타를 지정된 타입에 맞춥니다.</summary>
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Chiffon", priority = 1100)]
@@ -246,6 +272,7 @@ namespace com.vrsuya.avatarscaler {
 					VRC_AvatarDescriptor AvatarDescriptor = TargetAvatarDescriptor;
 					GameObject AvatarObject = AvatarDescriptor.gameObject;
 					Vector3 AvatarViewPosition = AvatarDescriptor.ViewPosition;
+					if (AutomaticAvatarRecognition) CurrentAvatarType = GetCurrentAvatarType(TargetAvatarDescriptor);
 					float TargetEyeHeight = AvatarEyeHeights[CurrentAvatarType] * TargetHeight / 100;
 					float TargetAvatarScale = TargetEyeHeight / AvatarViewPosition.y;
 					Undo.IncrementCurrentGroup();
@@ -260,6 +287,23 @@ namespace com.vrsuya.avatarscaler {
 			return;
 		}
 
+		/// <summary>아바타 이름을 분석하여 어떤 아바타인지 반환합니다.</summary>
+		/// <returns>아바타 타입</returns>
+		private static Avatar GetCurrentAvatarType(VRC_AvatarDescriptor TargetAvatarDescritor) {
+			string AvatarName = TargetAvatarDescritor.gameObject.name;
+			Avatar newCurrentAvatarType = CurrentAvatarType;
+			foreach (var TargetAvatarNames in AvatarNames) {
+				Avatar AvatarType = TargetAvatarNames.Key;
+				string[] AvatarMultiName = TargetAvatarNames.Value;
+				foreach (string MultiName in AvatarMultiName) {
+					if (AvatarName.Contains(MultiName, StringComparison.OrdinalIgnoreCase)) {
+						newCurrentAvatarType = TargetAvatarNames.Key;
+						return newCurrentAvatarType;
+					}
+				}
+			}
+			return newCurrentAvatarType;
+		}
 
 		/// <summary>아바타의 스케일을 변경합니다.</summary>
 		private static void ScaleAvatarTransform(GameObject TargetAvatar, float TargetScale) {
