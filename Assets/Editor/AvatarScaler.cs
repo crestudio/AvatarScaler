@@ -57,66 +57,77 @@ namespace com.vrsuya.avatarscaler {
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Chiffon", priority = 1100)]
 		public static void SetAvatarTypeChiffon() {
 			CurrentAvatarType = Avatar.Chiffon;
+			CheckAvatarMenu();
 			return;
 		}
 
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Grus", priority = 1101)]
 		public static void SetAvatarTypeGrus() {
 			CurrentAvatarType = Avatar.Grus;
+			CheckAvatarMenu();
 			return;
 		}
 
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Karin", priority = 1102)]
 		public static void SetAvatarTypeKarin() {
 			CurrentAvatarType = Avatar.Karin;
+			CheckAvatarMenu();
 			return;
 		}
 
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Kikyo", priority = 1103)]
 		public static void SetAvatarTypeKikyo() {
 			CurrentAvatarType = Avatar.Kikyo;
+			CheckAvatarMenu();
 			return;
 		}
 
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Leefa", priority = 1104)]
 		public static void SetAvatarTypeLeefa() {
 			CurrentAvatarType = Avatar.Leefa;
+			CheckAvatarMenu();
 			return;
 		}
 
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Lime", priority = 1105)]
 		public static void SetAvatarTypeLime() {
 			CurrentAvatarType = Avatar.Lime;
+			CheckAvatarMenu();
 			return;
 		}
 
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Mamehinata", priority = 1106)]
 		public static void SetAvatarTypeMamehinata() {
 			CurrentAvatarType = Avatar.Mamehinata;
+			CheckAvatarMenu();
 			return;
 		}
 
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Manuka", priority = 1107)]
 		public static void SetAvatarTypeManuka() {
 			CurrentAvatarType = Avatar.Manuka;
+			CheckAvatarMenu();
 			return;
 		}
 
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Maya", priority = 1108)]
 		public static void SetAvatarTypeMaya() {
 			CurrentAvatarType = Avatar.Maya;
+			CheckAvatarMenu();
 			return;
 		}
 
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Minase", priority = 1109)]
 		public static void SetAvatarTypeMinase() {
 			CurrentAvatarType = Avatar.Minase;
+			CheckAvatarMenu();
 			return;
 		}
 
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Moe", priority = 1110)]
 		public static void SetAvatarTypeMoe() {
 			CurrentAvatarType = Avatar.Moe;
+			CheckAvatarMenu();
 			return;
 		}
 
@@ -130,12 +141,14 @@ namespace com.vrsuya.avatarscaler {
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Shinra", priority = 1111)]
 		public static void SetAvatarTypeShinra() {
 			CurrentAvatarType = Avatar.Shinra;
+			CheckAvatarMenu();
 			return;
 		}
 
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Sio", priority = 1112)]
 		public static void SetAvatarTypeSio() {
 			CurrentAvatarType = Avatar.Sio;
+			CheckAvatarMenu();
 			return;
 		}
 
@@ -203,6 +216,25 @@ namespace com.vrsuya.avatarscaler {
 		[MenuItem("Tools/VRSuya/AvatarScaler/200cm", priority = 1210)]
 		public static void ScaleAvatar200cm() {
 			ScaleAvatar(200);
+			return;
+		}
+
+		/// <summary>아바타 메뉴의 변수 상태를 체크합니다.</summary>
+		private static void CheckAvatarMenu() {
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Chiffon", CurrentAvatarType == Avatar.Chiffon);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Grus", CurrentAvatarType == Avatar.Grus);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Karin", CurrentAvatarType == Avatar.Karin);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Kikyo", CurrentAvatarType == Avatar.Kikyo);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Leefa", CurrentAvatarType == Avatar.Leefa);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Lime", CurrentAvatarType == Avatar.Lime);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Mamehinata", CurrentAvatarType == Avatar.Mamehinata);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Manuka", CurrentAvatarType == Avatar.Manuka);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Maya", CurrentAvatarType == Avatar.Maya);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Minase", CurrentAvatarType == Avatar.Minase);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Moe", CurrentAvatarType == Avatar.Moe);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Selestia", CurrentAvatarType == Avatar.Selestia);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Shinra", CurrentAvatarType == Avatar.Shinra);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Sio", CurrentAvatarType == Avatar.Sio);
 			return;
 		}
 
