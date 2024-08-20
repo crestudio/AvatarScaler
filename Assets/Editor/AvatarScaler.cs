@@ -39,7 +39,7 @@ namespace com.vrsuya.avatarscaler {
 				VRC_AvatarDescriptor AvatarDescriptor = GetVRCAvatar();
 				GameObject AvatarObject = AvatarDescriptor.gameObject;
 				Vector3 AvatarViewPosition = AvatarDescriptor.ViewPosition;
-				float TargetEyeHeight = Kikyo1mEyePosition * TargetHeight;
+				float TargetEyeHeight = Kikyo1mEyePosition * TargetHeight / 100;
 				float TargetAvatarScale = TargetEyeHeight / AvatarViewPosition.y;
 				Undo.IncrementCurrentGroup();
 				Undo.SetCurrentGroupName("VRSuya AvatarScaler");
