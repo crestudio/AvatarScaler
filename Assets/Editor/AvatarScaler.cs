@@ -15,7 +15,7 @@ namespace com.vrsuya.avatarscaler {
 
 	public class AvatarScaler : MonoBehaviour {
 
-		private readonly static float Kikyo1mEyePosition = 0.88848f;
+		private readonly static float Kikyo1mEyePosition = 0.892182f;
 
 		private static int UndoGroupIndex;
 
