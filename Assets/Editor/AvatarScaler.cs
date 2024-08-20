@@ -325,7 +325,7 @@ namespace com.vrsuya.avatarscaler {
 					float TargetAvatarScale = TargetEyeHeight / AvatarViewPosition.y;
 					ScaleAvatarTransform(AvatarObject, TargetAvatarScale);
 					ScaleAvatarViewPosition(AvatarDescriptor, TargetAvatarScale);
-					Debug.Log("[AvatarScaler] Set the height of " + AvatarObject.name  + " avatar to " + TargetHeight  + "cm");
+					Debug.Log("[AvatarScaler] Set the height of " + AvatarObject.name + " avatar to " + TargetHeight + "cm");
 				}
 				CheckAvatarMenu();
 				SceneView.RepaintAll();
@@ -335,8 +335,8 @@ namespace com.vrsuya.avatarscaler {
 
 		/// <summary>아바타 이름을 분석하여 어떤 아바타인지 반환합니다.</summary>
 		/// <returns>아바타 타입</returns>
-		private static Avatar GetCurrentAvatarType(VRC_AvatarDescriptor TargetAvatarDescritor) {
-			string AvatarName = TargetAvatarDescritor.gameObject.name;
+		private static Avatar GetCurrentAvatarType(VRC_AvatarDescriptor TargetAvatarDescriptor) {
+			string AvatarName = TargetAvatarDescriptor.gameObject.name;
 			Avatar newCurrentAvatarType = CurrentAvatarType;
 			foreach (var TargetAvatarNames in AvatarNames) {
 				Avatar AvatarType = TargetAvatarNames.Key;
@@ -361,10 +361,10 @@ namespace com.vrsuya.avatarscaler {
 		}
 
 		/// <summary>아바타의 뷰 포지션을 변경합니다.</summary>
-		private static void ScaleAvatarViewPosition(VRC_AvatarDescriptor TargetAvatarDescritor, float TargetScale) {
-			Undo.RecordObject(TargetAvatarDescritor, "Changed Avatar View Position");
-			TargetAvatarDescritor.ViewPosition = TargetAvatarDescritor.ViewPosition * TargetScale;
-			EditorUtility.SetDirty(TargetAvatarDescritor);
+		private static void ScaleAvatarViewPosition(VRC_AvatarDescriptor TargetAvatarDescriptor, float TargetScale) {
+			Undo.RecordObject(TargetAvatarDescriptor, "Changed Avatar View Position");
+			TargetAvatarDescriptor.ViewPosition = TargetAvatarDescriptor.ViewPosition * TargetScale;
+			EditorUtility.SetDirty(TargetAvatarDescriptor);
 			Undo.CollapseUndoOperations(UndoGroupIndex);
 		}
 
