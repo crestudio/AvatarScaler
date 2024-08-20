@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using System.Collections.Generic;
 using System.Linq;
 
 using UnityEditor;
@@ -15,9 +16,119 @@ namespace com.vrsuya.avatarscaler {
 
 	public class AvatarScaler : MonoBehaviour {
 
-		private readonly static float Kikyo1mEyePosition = 0.892182f;
+		public enum Avatar {
+			Chiffon,
+			Grus,
+			Karin,
+			Kikyo,
+			Leefa,
+			Lime,
+			Mamehinata,
+			Manuka,
+			Maya,
+			Minase,
+			Moe,
+			Shinra,
+			Sio
+		}
 
+		private readonly static Dictionary<Avatar, float> AvatarEyeHeights = new Dictionary<Avatar, float>() {
+			{ Avatar.Chiffon, 0.880152f },
+			{ Avatar.Grus, 0.892328f },
+			{ Avatar.Karin, 0.87956f },
+			{ Avatar.Kikyo, 0.892182f },
+			{ Avatar.Leefa, 0.886995f },
+			{ Avatar.Lime, 0.89622f },
+			{ Avatar.Mamehinata, 0.8167276f },
+			{ Avatar.Manuka, 0.8817998f },
+			{ Avatar.Maya, 0.8845845f },
+			{ Avatar.Minase, 0.91609f },
+			{ Avatar.Moe, 0.897036f },
+			{ Avatar.Shinra, 0.900882f },
+			{ Avatar.Sio, 0.9020135f }
+		};
+
+		public static Avatar CurrentAvatarType = Avatar.Kikyo;
 		private static int UndoGroupIndex;
+
+		/// <summary>아바타를 지정된 타입에 맞춥니다.</summary>
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Chiffon", priority = 1100)]
+		public static void SetAvatarTypeChiffon() {
+			CurrentAvatarType = Avatar.Chiffon;
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Grus", priority = 1101)]
+		public static void SetAvatarTypeGrus() {
+			CurrentAvatarType = Avatar.Grus;
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Karin", priority = 1102)]
+		public static void SetAvatarTypeKarin() {
+			CurrentAvatarType = Avatar.Karin;
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Kikyo", priority = 1103)]
+		public static void SetAvatarTypeKikyo() {
+			CurrentAvatarType = Avatar.Kikyo;
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Leefa", priority = 1104)]
+		public static void SetAvatarTypeLeefa() {
+			CurrentAvatarType = Avatar.Leefa;
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Lime", priority = 1105)]
+		public static void SetAvatarTypeLime() {
+			CurrentAvatarType = Avatar.Lime;
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Mamehinata", priority = 1106)]
+		public static void SetAvatarTypeMamehinata() {
+			CurrentAvatarType = Avatar.Mamehinata;
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Manuka", priority = 1107)]
+		public static void SetAvatarTypeManuka() {
+			CurrentAvatarType = Avatar.Manuka;
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Maya", priority = 1108)]
+		public static void SetAvatarTypeMaya() {
+			CurrentAvatarType = Avatar.Maya;
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Minase", priority = 1109)]
+		public static void SetAvatarTypeMinase() {
+			CurrentAvatarType = Avatar.Minase;
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Moe", priority = 1110)]
+		public static void SetAvatarTypeMoe() {
+			CurrentAvatarType = Avatar.Moe;
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Shinra", priority = 1111)]
+		public static void SetAvatarTypeShinra() {
+			CurrentAvatarType = Avatar.Shinra;
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Sio", priority = 1112)]
+		public static void SetAvatarTypeSio() {
+			CurrentAvatarType = Avatar.Sio;
+			return;
+		}
 
 		/// <summary>아바타의 키를 지정된 키에 맞춥니다.</summary>
 		[MenuItem("Tools/VRSuya/AvatarScaler/100cm", priority = 1200)]
@@ -92,7 +203,7 @@ namespace com.vrsuya.avatarscaler {
 				VRC_AvatarDescriptor AvatarDescriptor = GetVRCAvatar();
 				GameObject AvatarObject = AvatarDescriptor.gameObject;
 				Vector3 AvatarViewPosition = AvatarDescriptor.ViewPosition;
-				float TargetEyeHeight = Kikyo1mEyePosition * TargetHeight / 100;
+				float TargetEyeHeight = AvatarEyeHeights[CurrentAvatarType] * TargetHeight / 100;
 				float TargetAvatarScale = TargetEyeHeight / AvatarViewPosition.y;
 				Undo.IncrementCurrentGroup();
 				Undo.SetCurrentGroupName("VRSuya AvatarScaler");
