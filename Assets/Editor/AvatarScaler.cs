@@ -19,17 +19,70 @@ namespace com.vrsuya.avatarscaler {
 
 		private static int UndoGroupIndex;
 
-		/// <summary>아바타의 키를 145cm에 맞춥니다.</summary>
-		[MenuItem("Tools/VRSuya/AvatarScaler/145cm", priority = 1200)]
-		public static void ScaleAvatar145cm() {
-			ScaleAvatar(145);
+		/// <summary>아바타의 키를 지정된 키에 맞춥니다.</summary>
+		[MenuItem("Tools/VRSuya/AvatarScaler/100cm", priority = 1200)]
+		public static void ScaleAvatar100cm() {
+			ScaleAvatar(100);
 			return;
 		}
 
-		/// <summary>아바타의 키를 160cm에 맞춥니다.</summary>
-		[MenuItem("Tools/VRSuya/AvatarScaler/160cm", priority = 1201)]
+		[MenuItem("Tools/VRSuya/AvatarScaler/110cm", priority = 1201)]
+		public static void ScaleAvatar110cm() {
+			ScaleAvatar(110);
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/120cm", priority = 1202)]
+		public static void ScaleAvatar120cm() {
+			ScaleAvatar(120);
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/130cm", priority = 1203)]
+		public static void ScaleAvatar130cm() {
+			ScaleAvatar(130);
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/140cm", priority = 1204)]
+		public static void ScaleAvatar140cm() {
+			ScaleAvatar(140);
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/150cm", priority = 1205)]
+		public static void ScaleAvatar150cm() {
+			ScaleAvatar(150);
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/160cm", priority = 1206)]
 		public static void ScaleAvatar160cm() {
 			ScaleAvatar(160);
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/170cm", priority = 1207)]
+		public static void ScaleAvatar170cm() {
+			ScaleAvatar(170);
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/180cm", priority = 1208)]
+		public static void ScaleAvatar180cm() {
+			ScaleAvatar(180);
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/190cm", priority = 1209)]
+		public static void ScaleAvatar190cm() {
+			ScaleAvatar(190);
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/200cm", priority = 1210)]
+		public static void ScaleAvatar200cm() {
+			ScaleAvatar(200);
 			return;
 		}
 
