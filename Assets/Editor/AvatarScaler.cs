@@ -282,6 +282,7 @@ namespace com.vrsuya.avatarscaler {
 					ScaleAvatarViewPosition(AvatarDescriptor, TargetAvatarScale);
 					Debug.Log("[AvatarScaler] " + AvatarObject.name + " 아바타 키를 " + TargetHeight + "cm으로 맞추었습니다!");
 				}
+				CheckAvatarMenu();
 				SceneView.RepaintAll();
 			}
 			return;
