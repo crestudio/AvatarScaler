@@ -69,9 +69,49 @@ namespace com.vrsuya.avatarscaler {
 			Undo.CollapseUndoOperations(UndoGroupIndex);
 		}
 
-		/// <summary>Scene에서 활성화 상태인 VRC AvatarDescriptor 컴포넌트를 가지고 있는 아바타 1개를 반환합니다.</summary>
-		/// <returns>활성화 상태인 VRC 아바타</returns>
+		/// <summary>Scene에서 조건에 맞는 VRC AvatarDescriptor 컴포넌트 아바타 1개를 반환합니다.</summary>
+		/// <returns>조건에 맞는 VRC 아바타</returns>
 		private static VRC_AvatarDescriptor GetVRCAvatar() {
+			VRC_AvatarDescriptor TargetAvatarDescriptor = GetAvatarDescriptorFromVRCSDKBuilder();
+			if (!TargetAvatarDescriptor) TargetAvatarDescriptor = GetAvatarDescriptorFromSelection();
+			if (!TargetAvatarDescriptor) TargetAvatarDescriptor = GetAvatarDescriptorFromVRCTool();
+			return TargetAvatarDescriptor;
+		}
+
+		/// <summary>VRCSDK Builder에서 활성화 상태인 VRC 아바타를 반환합니다.</summary>
+		/// <returns>VRCSDK Builder에서 활성화 상태인 VRC 아바타</returns>
+		private static VRC_AvatarDescriptor GetAvatarDescriptorFromVRCSDKBuilder() {
+			return null;
+		}
+
+		/// <summary>Unity 하이어라키에서 선택한 GameObject 중에서 VRC AvatarDescriptor 컴포넌트가 존재하는 아바타를 1개를 반환합니다.</summary>
+		/// <returns>선택 중인 VRC 아바타</returns>
+		private static VRC_AvatarDescriptor GetAvatarDescriptorFromSelection() {
+			GameObject[] SelectedGameObjects = Selection.gameObjects;
+			if (SelectedGameObjects.Length == 1) {
+				VRC_AvatarDescriptor SelectedVRCAvatarDescriptor = SelectedGameObjects[0].GetComponent<VRC_AvatarDescriptor>();
+				if (SelectedVRCAvatarDescriptor) {
+					return SelectedVRCAvatarDescriptor;
+				} else {
+					return null;
+				}
+			} else if (SelectedGameObjects.Length > 1) {
+				VRC_AvatarDescriptor SelectedVRCAvatarDescriptor = SelectedGameObjects
+					.Where(SelectedGameObject => SelectedGameObject.activeInHierarchy == true)
+					.Select(SelectedGameObject => SelectedGameObject.GetComponent<VRC_AvatarDescriptor>()).ToArray()[0];
+				if (SelectedVRCAvatarDescriptor) {
+					return SelectedVRCAvatarDescriptor;
+				} else {
+					return null;
+				}
+			} else {
+				return null;
+			}
+		}
+
+		/// <summary>Scene에서 활성화 상태인 VRC AvatarDescriptor 컴포넌트가 존재하는 아바타를 1개를 반환합니다.</summary>
+		/// <returns>Scene에서 활성화 상태인 VRC 아바타</returns>
+		private static VRC_AvatarDescriptor GetAvatarDescriptorFromVRCTool() {
 			VRC_AvatarDescriptor[] AllVRCAvatarDescriptor = VRC.Tools.FindSceneObjectsOfTypeAll<VRC_AvatarDescriptor>().ToArray();
 			if (AllVRCAvatarDescriptor.Length > 0) {
 				return AllVRCAvatarDescriptor.Where(Avatar => Avatar.gameObject.activeInHierarchy).ToArray()[0];
