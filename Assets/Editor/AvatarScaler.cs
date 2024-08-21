@@ -15,6 +15,7 @@ using VRC.SDKBase;
 
 namespace com.vrsuya.avatarscaler {
 
+	[InitializeOnLoad]
 	[ExecuteInEditMode]
 	public class AvatarScaler : MonoBehaviour {
 
@@ -282,9 +283,8 @@ namespace com.vrsuya.avatarscaler {
 			return;
 		}
 
-		private void OnEnable() {
+		static AvatarScaler() {
 			CheckAvatarMenu();
-			return;
 		}
 
 		/// <summary>아바타 메뉴의 변수 상태를 체크합니다.</summary>
