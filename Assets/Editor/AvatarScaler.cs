@@ -20,6 +20,7 @@ namespace com.vrsuya.avatarscaler {
 	public class AvatarScaler : MonoBehaviour {
 
 		public enum Avatar {
+			Airi,
 			Chiffon,
 			Grus,
 			Karin,
@@ -34,12 +35,14 @@ namespace com.vrsuya.avatarscaler {
 			Minase,
 			Moe,
 			Selestia,
+			Shinano,
 			Shinra,
 			Sio,
 			Ukon
 		}
 
 		private readonly static Dictionary<Avatar, float> AvatarEyeHeights = new Dictionary<Avatar, float>() {
+			{ Avatar.Airi, 0.8852937f },
 			{ Avatar.Chiffon, 0.880152f },
 			{ Avatar.Grus, 0.892328f },
 			{ Avatar.Karin, 0.87956f },
@@ -54,12 +57,14 @@ namespace com.vrsuya.avatarscaler {
 			{ Avatar.Minase, 0.91609f },
 			{ Avatar.Moe, 0.897036f },
 			{ Avatar.Selestia, 0.8838221f },
+			{ Avatar.Shinano, 0.8931774f },
 			{ Avatar.Shinra, 0.900882f },
 			{ Avatar.Sio, 0.9020135f },
 			{ Avatar.Ukon, 0.889545f }
 		};
 
 		private readonly static Dictionary<Avatar, string[]> AvatarNames = new Dictionary<Avatar, string[]>() {
+			{ Avatar.Airi, new string[] { "Airi", "아이리", "愛莉" } },
 			{ Avatar.Chiffon, new string[] { "Chiffon", "쉬폰", "シフォン" } },
 			{ Avatar.Grus, new string[] { "Grus", "그루스" } },
 			{ Avatar.Karin, new string[] { "Karin", "카린", "カリン" } },
@@ -74,6 +79,7 @@ namespace com.vrsuya.avatarscaler {
 			{ Avatar.Minase, new string[] { "Minase", "미나세", "水瀬" } },
 			{ Avatar.Moe, new string[] { "Moe", "모에", "萌" } },
 			{ Avatar.Selestia, new string[] { "SELESTIA", "셀레스티아", "セレスティア" } },
+			{ Avatar.Shinano, new string[] { "Shinano", "시나노", "しなの" } },
 			{ Avatar.Shinra, new string[] { "Shinra", "신라", "森羅" } },
 			{ Avatar.Sio, new string[] { "Sio", "시오", "しお" } },
 			{ Avatar.Ukon, new string[] { "Ukon", "우콘", "右近" } }
@@ -92,6 +98,13 @@ namespace com.vrsuya.avatarscaler {
 		}
 
 		/// <summary>아바타를 지정된 타입에 맞춥니다.</summary>
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Airi", priority = 1100)]
+		public static void SetAvatarTypeAiri() {
+			CurrentAvatarType = Avatar.Airi;
+			CheckAvatarMenu();
+			return;
+		}
+
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Chiffon", priority = 1100)]
 		public static void SetAvatarTypeChiffon() {
 			CurrentAvatarType = Avatar.Chiffon;
@@ -186,6 +199,13 @@ namespace com.vrsuya.avatarscaler {
 		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Selestia", priority = 1113)]
 		public static void SetAvatarTypeSelestia() {
 			CurrentAvatarType = Avatar.Selestia;
+			CheckAvatarMenu();
+			return;
+		}
+
+		[MenuItem("Tools/VRSuya/AvatarScaler/Avatar/Shinano", priority = 1113)]
+		public static void SetAvatarTypeShinano() {
+			CurrentAvatarType = Avatar.Shinano;
 			CheckAvatarMenu();
 			return;
 		}
@@ -290,6 +310,7 @@ namespace com.vrsuya.avatarscaler {
 		/// <summary>아바타 메뉴의 변수 상태를 체크합니다.</summary>
 		private static void CheckAvatarMenu() {
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Automatic Avatar Recognition", AutomaticAvatarRecognition);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Airi", CurrentAvatarType == Avatar.Airi);
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Chiffon", CurrentAvatarType == Avatar.Chiffon);
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Grus", CurrentAvatarType == Avatar.Grus);
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Karin", CurrentAvatarType == Avatar.Karin);
@@ -304,6 +325,7 @@ namespace com.vrsuya.avatarscaler {
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Minase", CurrentAvatarType == Avatar.Minase);
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Moe", CurrentAvatarType == Avatar.Moe);
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Selestia", CurrentAvatarType == Avatar.Selestia);
+			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Shinano", CurrentAvatarType == Avatar.Shinano);
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Shinra", CurrentAvatarType == Avatar.Shinra);
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Sio", CurrentAvatarType == Avatar.Sio);
 			Menu.SetChecked("Tools/VRSuya/AvatarScaler/Avatar/Ukon", CurrentAvatarType == Avatar.Ukon);
